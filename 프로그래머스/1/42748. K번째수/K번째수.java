@@ -1,17 +1,22 @@
 import java.util.*;
-
 class Solution {
     public int[] solution(int[] array, int[][] commands) {
-        int[] answer = new int[commands.length];
+        List<Integer> list = new ArrayList<>();
+        int[] answer = {};
+        int l,m,n=0;
         
-        for(int a=0;a<commands.length;a++){
-            int i=commands[a][0]-1;
-            int j=commands[a][1];
-            int k=commands[a][2];
+        for(int i=0;i<commands.length;i++){
+            l= commands[i][0];
+            m= commands[i][1];
+            n= commands[i][2];
             
-            int [] arrcopy = Arrays.copyOfRange(array,i,j);
-            Arrays.sort(arrcopy);
-            answer[a]=arrcopy[k-1];
+            int[] sliced = Arrays.copyOfRange(array,l-1,m);
+            Arrays.sort(sliced);
+            list.add(sliced[n-1]);
+        }
+        answer = new int[list.size()];
+        for(int i=0;i<answer.length;i++){
+            answer[i] = list.get(i);
         }
         return answer;
     }
